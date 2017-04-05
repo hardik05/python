@@ -2,8 +2,6 @@
 ##Author: Hardik Shah
 ##Mail: hardik05@gmail.com
 
-#"C:\Program Files\Microsoft Office\Office16\winword.exe"
-
 from pydbg import *
 from pydbg.defines import *
 import pydasm
