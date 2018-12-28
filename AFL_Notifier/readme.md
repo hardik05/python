@@ -8,7 +8,7 @@ how to use?
 2. then run python generate_config.py, it will generate "settings.json" file
 3. then run python afl_twitter_notify.py, thats it.
 
-you will needs json lib for this script to work.
+you will needs json lib and python-twitter for this script to work.
 
 comments or suggestions?
 feel free to mail me at hardik05 _AT(_ gmail.)_com
