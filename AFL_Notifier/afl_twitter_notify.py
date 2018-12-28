@@ -1,10 +1,7 @@
 #AFL twitter notifier -> sends a DM on specified twitter account when
 #a new crash or new hang is found.
 #it monitors the directory and checks for new file at specified intervals
-#original scripts ->
-#todo: create a config file to store the keys and path
-#hardik shah -> hardik05@gmail.com
-# hardik05.wordpress.com
+#hardik shah, hardik05.wordpress.com
 
 import os, time,twitter,json
 
