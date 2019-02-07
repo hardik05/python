@@ -10,18 +10,22 @@ import os, time,twitter,json
 with open("settings.json", "r") as file:
     creds = json.load(file)
 
-consumer_key = creds['CONSUMER_KEY']  
+consumer_key = creds['CONSUMER_KEY']
 consumer_secret = creds['CONSUMER_SECRET']
 access_token_key = creds['ACCESS_TOKEN']
 access_token_secret = creds['ACCESS_SECRET']
 #afl specific settings
 crash_path_to_watch = creds['CRASH_PATH']
-hang_path_to_watch = creds['HANG_PATH'] 
+hang_path_to_watch = creds['HANG_PATH']
 #script settings
-mon_time = int(creds['MONITOR_TIME']) 
+mon_time = int(creds['MONITOR_TIME'])
 #twitter handle you want to receive DMs.
-twitter_handle = creds['TWITTER_HANDLE'] 
+twitter_handle = creds['TWITTER_HANDLE']
+#name of the project
+project_name = creds['PROJECT_NAME']
 
+print "starting AFL Twitter Notifier"
+print "Project name:",project_name
 
 crash_before = dict ([(f, None) for f in os.listdir (crash_path_to_watch)])
 hang_before = dict ([(f, None) for f in os.listdir (hang_path_to_watch)])
@@ -41,12 +45,12 @@ while 1:
 
   crash_added = [f for f in crash_after if not f in crash_before]
   hang_added = [f for f in hang_after if not f in hang_before]
-  
+
   if crash_added:
     print "new crash found: ", ", ".join (crash_added)
     # Get current time
     t = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
-    msg = "Alert !! new unique crash detected at " + t
+    msg = "Alert !! new unique crash detected at " + t  + " for " + project_name
 
     # Send Direct Message to official Twitter handle
     try:
@@ -57,14 +61,14 @@ while 1:
     print "new hang found: ", ", ".join (hang_added)
     # Get current time
     t = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
-    msg = "Alert !! new unique hang detected at " + t
+    msg = "Alert !! new unique hang detected at " + t + " for " + project_name
 
     # Send Direct Message to official Twitter handle
     try:
         send_msg = api.PostDirectMessage(msg, user_id=None, screen_name=twitter_handle)
     except:
         print "couldn't send message"
-	  if check_time == 3600:
+    if check_time == 3600:
       t = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime())
       msg = "ping pong: " + t
       check_time = 0
