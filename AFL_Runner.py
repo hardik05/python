@@ -3,6 +3,13 @@
 # Purpose:     starts afl-fuzz.exe with provided parameters. configure it once.
 #              makes running easy in case afl-fuzz.exe crahses, you dont need
 #              to type entire command and parameters. jsut run AFL_Runner.py
+# arguments:  if AFLDebug = 1 then it will first run drrun.exe in debug mode and
+#               generate a log file. open that log file and check if everything
+#               is working fine. if you dont give this arg, then it will start
+#               afl-fuzz.exe with configured parameters.
+# how to run:   1. run AFL_Runner.py --AFLDebug 1 from winafl\bin32 dir. 
+#               and check log file. if everything is fine then go to step 2.
+#                2. run AFL_Runner.py and enjoy fuzzing.
 # Author:      hardik shah
 #
 # Created:     03/06/2019
